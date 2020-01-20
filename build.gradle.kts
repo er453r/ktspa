@@ -1,3 +1,6 @@
+group = "com.er453r"
+version = "0.0.1"
+
 repositories{
     jcenter()
 }
@@ -13,9 +16,27 @@ dependencies{
 
 kotlin {
     target {
-        browser {}
+        browser {
+            webpackTask {
+                sourceMaps = true
+                outputFileName = "app.js"
+            }
+        }
     }
 
     sourceSets["main"].kotlin.srcDir("src")
 }
 
+tasks["build"].doLast {
+    println("Copying to dist...")
+
+    copy {
+        from("res")
+        into("dist")
+    }
+
+    copy {
+        from("build/distributions")
+        into("dist")
+    }
+}
