@@ -1,6 +1,3 @@
-group = "group"
-version = "0.0.1"
-
 repositories{
     jcenter()
 }
@@ -20,5 +17,5 @@ kotlin {
     }
 
     sourceSets["main"].kotlin.srcDir("src")
-    sourceSets["main"].resources.srcDir("res")
 }
+
