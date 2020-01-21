@@ -1,5 +1,7 @@
 package com.er453r.ktspa
 
+import com.er453r.ktspa.components.userView
+import com.er453r.ktspa.dtos.User
 import com.er453r.ktspa.static.staticFilesGenerated
 import kotlinx.html.dom.append
 import kotlinx.html.js.div
@@ -22,5 +24,4 @@ fun main() {
             userView(User(firstName = "Aaaaaa", lastName = "Bbbbbb"))
         }
     })
-
 }

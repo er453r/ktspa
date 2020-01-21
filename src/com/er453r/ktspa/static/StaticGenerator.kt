@@ -1,7 +1,7 @@
 package com.er453r.ktspa.static
 
 fun staticFilesGenerated(): Boolean {
-    val isBrowser = js("typeof variable !== 'undefined'") as Boolean
+    val isBrowser = js("typeof document !== 'undefined'") as Boolean
 
     println("Browser check: $isBrowser")
 

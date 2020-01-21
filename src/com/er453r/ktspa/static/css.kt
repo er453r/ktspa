@@ -8,6 +8,6 @@ fun css() = CSSBuilder().apply {
 
         fontSize = 2.em
 
-        color = Color.azure
+        color = Color.gray
     }
 }.toString()
