@@ -3,6 +3,7 @@ version = "0.0.1"
 
 repositories{
     jcenter()
+    maven("https://kotlin.bintray.com/kotlin-js-wrappers/")
 }
 
 plugins {
@@ -12,9 +13,8 @@ plugins {
 dependencies{
     implementation(kotlin("stdlib-js"))
     implementation("org.jetbrains.kotlinx", "kotlinx-html-js", "0.6.12")
+    implementation("org.jetbrains", "kotlin-css-js", "1.0.0-pre.89-kotlin-1.3.60")
 }
-
-sourceSets.create("static")
 
 kotlin {
     target {
