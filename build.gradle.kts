@@ -14,6 +14,8 @@ dependencies{
     implementation("org.jetbrains.kotlinx", "kotlinx-html-js", "0.6.12")
 }
 
+sourceSets.create("static")
+
 kotlin {
     target {
         browser {
@@ -24,11 +26,14 @@ kotlin {
         }
     }
 
-    sourceSets["main"].kotlin.srcDir("src")
+    sourceSets["main"].kotlin.srcDir("src/com/er453r/ktspa")
+    sourceSets["test"].kotlin.srcDir("src/com/er453r/static")
 }
 
 tasks["build"].doLast {
     println("Copying to dist...")
+
+    delete("dist")
 
     copy {
         from("res")
@@ -38,5 +43,10 @@ tasks["build"].doLast {
     copy {
         from("build/distributions")
         into("dist")
+    }
+
+    exec{
+        workingDir("dist")
+        commandLine("nodejs ../build/js/packages/ktspa-test/kotlin/ktspa-test.js")
     }
 }
