@@ -26,8 +26,7 @@ kotlin {
         }
     }
 
-    sourceSets["main"].kotlin.srcDir("src/com/er453r/ktspa")
-    sourceSets["test"].kotlin.srcDir("src/com/er453r/static")
+    sourceSets["main"].kotlin.srcDir("src")
 }
 
 tasks["build"].doLast {
@@ -36,17 +35,13 @@ tasks["build"].doLast {
     delete("dist")
 
     copy {
-        from("res")
-        into("dist")
-    }
-
-    copy {
         from("build/distributions")
         into("dist")
     }
 
     exec{
         workingDir("dist")
-        commandLine("nodejs ../build/js/packages/ktspa-test/kotlin/ktspa-test.js")
+        commandLine("nodejs")
+        args("../build/js/packages/ktspa/kotlin/ktspa.js")
     }
 }

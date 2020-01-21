@@ -1,4 +1,4 @@
-package com.er453r.static
+package com.er453r.ktspa.static
 
 import kotlinx.html.body
 import kotlinx.html.head
