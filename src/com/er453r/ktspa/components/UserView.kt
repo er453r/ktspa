@@ -1,5 +1,6 @@
-package com.er453r.ktspa
+package com.er453r.ktspa.components
 
+import com.er453r.ktspa.dtos.User
 import kotlinx.html.TagConsumer
 import kotlinx.html.div
 import kotlinx.html.span

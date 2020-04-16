@@ -3,9 +3,7 @@ version = "0.0.1"
 
 repositories{
     jcenter()
-    maven {
-        setUrl("https://dl.bintray.com/kotlin/kotlin-js-wrappers/")
-    }
+    maven("https://kotlin.bintray.com/kotlin-js-wrappers/")
 }
 
 plugins {
@@ -34,13 +32,16 @@ kotlin {
 tasks["build"].doLast {
     println("Copying to dist...")
 
-    copy {
-        from("res")
-        into("dist")
-    }
+    delete("dist")
 
     copy {
         from("build/distributions")
         into("dist")
+    }
+
+    exec{
+        workingDir("dist")
+        commandLine("nodejs")
+        args("../build/js/packages/ktspa/kotlin/ktspa.js")
     }
 }
