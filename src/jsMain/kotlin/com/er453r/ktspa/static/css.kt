@@ -2,9 +2,9 @@ package com.er453r.ktspa.static
 
 import kotlinx.css.*
 
-fun css() = CSSBuilder().apply {
+fun css() = CssBuilder().apply {
     body {
-        margin(0.px)
+        margin = Margin(1.em)
 
         fontSize = 2.em
 

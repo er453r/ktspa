@@ -6,3 +6,5 @@ gradlew*
 dist
 target
 .idea
+kotlin-js-store
+

@@ -1,32 +1,39 @@
+import org.jetbrains.kotlin.gradle.dsl.KotlinJsCompile
+
 group = "com.er453r"
 version = "0.0.1"
 
-repositories{
-    jcenter()
-    maven("https://kotlin.bintray.com/kotlin-js-wrappers/")
-}
-
 plugins {
-    kotlin("js") version "1.3.61"
+    kotlin("multiplatform") version "2.0.20"
 }
 
-dependencies{
-    implementation(kotlin("stdlib-js"))
-    implementation("org.jetbrains.kotlinx", "kotlinx-html-js", "0.6.12")
-    implementation("org.jetbrains", "kotlin-css-js", "1.0.0-pre.90-kotlin-1.3.61")
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies {
+//    implementation(kotlin("stdlib-js"))
+//    implementation("org.jetbrains.kotlinx", "kotlinx-html-js", "0.6.12")
+//    implementation("org.jetbrains", "kotlin-css-js", "1.0.0-pre.90-kotlin-1.3.61")
+
 }
 
 kotlin {
-    target {
+    js {
         browser {
-            webpackTask {
-                sourceMaps = true
-                outputFileName = "app.js"
-            }
         }
+        binaries.executable()
     }
 
-    sourceSets["main"].kotlin.srcDir("src")
+    sourceSets {
+        commonMain.dependencies {
+            val kotlinxHtmlVersion = "0.11.0"
+
+            implementation("org.jetbrains.kotlinx:kotlinx-html:$kotlinxHtmlVersion")
+            implementation("org.jetbrains.kotlin-wrappers:kotlin-css:1.0.0-pre.798")
+        }
+    }
 }
 
 tasks["build"].doLast {
@@ -35,13 +42,14 @@ tasks["build"].doLast {
     delete("dist")
 
     copy {
-        from("build/distributions")
+        from("build/dist/js/productionExecutable")
         into("dist")
     }
 
-    exec{
+    exec {
         workingDir("dist")
         commandLine("nodejs")
         args("../build/js/packages/ktspa/kotlin/ktspa.js")
     }
 }
+

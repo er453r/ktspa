@@ -10,7 +10,7 @@ fun index() = createHTML().html {
         meta(charset = "utf-8")
         title("KTSPA Index")
 
-        script(src = "app.js"){}
+        script(src = "ktspa.js"){}
         link(href = "style.css", rel = "stylesheet")
     }
 
