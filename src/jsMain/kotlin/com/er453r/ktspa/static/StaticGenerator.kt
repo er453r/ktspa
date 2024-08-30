@@ -15,6 +15,8 @@ fun staticFilesGenerated(): Boolean {
 
         println("Static files generated!")
     }
+    else
+        js("window.dev = window.console.log.bind(window.console, '%s')")
 
     return !isBrowser
 }

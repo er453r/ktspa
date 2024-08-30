@@ -10,25 +10,14 @@ class KtSPA(block: TagConsumer<HTMLElement>.() -> Unit) {
     init {
         if (!staticFilesGenerated())
             document.addEventListener("DOMContentLoaded", {
-                debug("KtSPA start!", LogType.EVENT)
+                logger.init()
+
+                logger.info("This so derp")
+                logger.warn("This so derp")
+                logger.error("This so derp")
 
                 document.body!!.append(block = block)
             })
     }
-}
-
-enum class LogType {
-    EVENT,
-    ROUTING,
-}
-
-fun debug(s: String, color: LogType? = null) {
-    console.log(
-        "%c $s", when (color) {
-            null -> ""
-            LogType.EVENT -> "background: #FF0; color: #000000"
-            LogType.ROUTING -> "background: #09F; color: #000000"
-        }
-    )
 }
 
